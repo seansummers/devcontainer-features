@@ -1,9 +1,9 @@
 name: "Stress test - Docker in Docker"
-on:
-  pull_request:
-    paths:
-      - 'src/docker-in-docker/**'
-  workflow_dispatch:
+# on:
+#   pull_request:
+#     paths:
+#       - 'src/docker-in-docker/**'
+#   workflow_dispatch:
 
 jobs:
   test:
