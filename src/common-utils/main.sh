@@ -199,17 +199,13 @@ install_redhat_packages() {
             man-db \
             strace"
 
-        # amazonlinux:2023 installs:
-        # 'curl-minimal' which clashes with 'curl'
-        # 'gnupg2-minimal' which clashes with 'gnupg2'
-        if [[ "${ID}" != "amzn" ]] && [[ "${ID}" != "rocky ]]; then
-            package_list="${package_list} curl gnupg2"
-        fi
-
-        # rockylinux:9 installs 'curl-minimal' which clashes with 'curl'
-        # Install 'curl' for every OS except this rockylinux:9
-        if [[ "${ID}" = "rocky" ]] && [[ "${VERSION}" != *"9."* ]]; then
-            package_list="${package_list} curl"
+        # amazonlinux:2023 installs 'gnupg2-minimal' which clashes with 'gnupg2'
+        # rockylinux:9 and amazonlinux:2023 installs 'curl-minimal' which clashes with 'curl'
+        if [[ "${ID}" != "amzn" ]]; then
+            package_list="${package_list} gnupg2"
+            if [[ "${ID}" = "rocky" ]] && [[ "${VERSION}" != *"9."* ]]; then
+                package_list="${package_list} curl"
+            fi
         fi
 
         # Install OpenSSL 1.0 compat if needed
