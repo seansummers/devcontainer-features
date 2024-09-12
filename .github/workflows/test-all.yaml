@@ -37,7 +37,8 @@ jobs:
             # "ruby",
             # "rust",
             # "sshd",
-            "terraform",
+            # "terraform",
+            "tenv"
             # "nix",
         ]
         baseImage:
@@ -91,7 +92,8 @@ jobs:
             # "ruby",
             # "rust",
             # "sshd",
-            "terraform",
+            # "terraform",
+            "tenv"
             # "nix",
         ]
     steps:
