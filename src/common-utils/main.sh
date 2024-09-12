@@ -170,6 +170,7 @@ install_redhat_packages() {
 
     if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         package_list="${package_list} \
+            gnupg2 \
             findutils \
             gawk \
             bash-completion \
@@ -200,13 +201,14 @@ install_redhat_packages() {
             man-db \
             strace"
 
-        # amazonlinux:2023 installs 'gnupg2-minimal' which clashes with 'gnupg2'
-        # rockylinux:9 and amazonlinux:2023 installs 'curl-minimal' which clashes with 'curl'
+        # amazonlinux:2023 can replace gnupg2-minimum and curl-minimal
         if [[ "${ID}" != "amzn" ]]; then
-            package_list="${package_list} gnupg2"
-            if [[ "${ID}" = "rocky" ]] && [[ "${VERSION}" != *"9."* ]]; then
-                package_list="${package_list} curl"
-            fi
+            package_list="${package_list} --allowerasing"
+        fi
+
+        # rockylinux:9 and amazonlinux:2023 installs 'curl-minimal' which clashes with 'curl'
+        if [[ "${ID}" = "rocky" ]] && [[ "${VERSION}" != *"9."* ]]; then
+            package_list="${package_list} curl"
         fi
 
         # Install OpenSSL 1.0 compat if needed
