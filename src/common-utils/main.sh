@@ -201,9 +201,9 @@ install_redhat_packages() {
             man-db \
             strace"
 
-        # amazonlinux:2023 can replace gnupg2-minimum and curl-minimal
+        # amazonlinux:2023 can replace gnupg2-minimal and curl-minimal
         if [[ "${ID}" != "amzn" ]]; then
-            package_list="${package_list} --allowerasing"
+            package_list="${package_list} --allowerasing curl"
         fi
 
         # rockylinux:9 and amazonlinux:2023 installs 'curl-minimal' which clashes with 'curl'
