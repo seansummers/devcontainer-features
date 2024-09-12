@@ -201,9 +201,9 @@ install_redhat_packages() {
             man-db \
             strace"
 
-        # amazonlinux:2023 can replace gnupg2-minimum and curl-minimal
+        # amazonlinux:2023 can replace gnupg2-minimal and curl-minimal
         if [[ "${ID}" != "amzn" ]]; then
-            package_list="${package_list} --allowerasing"
+            dnf -y install --allowerasing curl gnupg2
         fi
 
         # rockylinux:9 and amazonlinux:2023 installs 'curl-minimal' which clashes with 'curl'
@@ -373,6 +373,11 @@ if [ "${ADJUSTED_ID}" = "rhel" ] && [ "${VERSION_CODENAME-}" = "centos7" ]; then
     sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo
     sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo
     sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
+fi
+
+if [ "${ID}" = "amzn" ];then
+    # upgrade to full versions of the packages for compatibility
+    dnf -y install --allowerasing coreutils curl gnupg2
 fi
 
 # Install packages for appropriate OS
