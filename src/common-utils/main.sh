@@ -170,6 +170,7 @@ install_redhat_packages() {
 
     if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         package_list="${package_list} \
+            findutils \
             gawk \
             bash-completion \
             openssh-clients \
