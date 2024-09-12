@@ -1,0 +1,6 @@
+{
+  "id": "tenv",
+  "name": "tenv manages versions for OpenTofu, Terraform, Terragrunt, and Atmos",
+  "version": "1.0.0",
+  "description": "OpenTofu, Terraform, Terragrunt, and Atmos version manager"
+}

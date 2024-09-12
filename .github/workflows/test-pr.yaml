@@ -37,7 +37,8 @@ jobs:
             # ruby: ./**/ruby/**
             # rust: ./**/rust/**
             # sshd: ./**/sshd/**
-            terraform: ./**/terraform/**
+            # terraform: ./**/terraform/**
+            tenv: ./**/tenv/**
             # nix: ./**/nix/**
 
   test:
