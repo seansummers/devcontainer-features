@@ -32,5 +32,10 @@ if [ "${ID}" = "alpine" ]; then
     apk add --no-cache bash
 fi
 
+# AL2023 has coreutils-single, curl-minimal and gnupg2-minimal that cause downstream issues
+if [ "${ID}" = "amzn" ]; then
+    dnf -y install --allowerasing coreutils curl gnupg2
+fi
+
 exec /bin/bash "$(dirname $0)/main.sh" "$@"
 exit $?
