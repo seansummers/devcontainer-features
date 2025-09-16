@@ -1,0 +1,30 @@
+{
+    "name": "tenv: OpenTofu / Terraform / Terragrunt / Terramate / Atmos version manager",
+    "id": "tenv",
+    "version": "1.0.0",
+    "description": "OpenTofu, Terraform, Terragrunt, Terramate and Atmos version manager, written in Go.",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "Select a tenv version to install.",
+            "proposals": [
+                "latest",
+                "v4.7.21"
+            ]
+        }
+    },
+    "dependsOn": {
+        "ghcr.io/devcontainers-extra/features/cosign:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "hashicorp.terraform"
+            ]
+        }
+    },
+    "containerEnv": {
+        "TENV_AUTO_INSTALL": "1"
+    }
+}
