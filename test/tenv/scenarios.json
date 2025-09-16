@@ -1,9 +1,9 @@
 {
-    "hello": {
+    "with_version": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "hello": {
-                "greeting": "hello"
+            "tenv": {
+                "version": "v4.7.21"
             }
         }
     }
