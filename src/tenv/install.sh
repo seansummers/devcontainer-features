@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+apt-get update && apt-get -y install curl jq
+
 REPO="tofuutils/tenv"
 ARCH="$(uname -m | sed s/aarch/arm/ | sed s/x86_/amd/)"
 FILTER=".assets[].browser_download_url | select(match(\"_${ARCH}.deb$\"))"
@@ -19,7 +21,7 @@ RELEASE=$(curl -sSL ${RELEASE_URL} | jq -r "${FILTER}")
 echo "Installing ${ARCH} deb package for ${REPO} @ ${VERSION}"
 
 TMP=$(mktemp)
-trap "rm -f ${TMP}" EXIT
+trap "rm -f \"${TMP}\"" EXIT
 
 curl -sL -o ${TMP} "${RELEASE}" \
   && dpkg -i "${TMP}"
