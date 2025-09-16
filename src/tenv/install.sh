@@ -8,7 +8,7 @@ FILTER=".assets[].browser_download_url | select(match(\"_${ARCH}.deb$\"))"
 echo "Activating feature 'tenv' from ${REPO}"
 echo "The provided version is: ${VERSION}"
 
-if [[ "${VERSION}" == "latest" ]];then
+if [[ "${VERSION}" == "latest" ]]; then
   VERSION=$(curl -sSL https://api.github.com/repos/${REPO}/releases/latest | jq -r .tag_name)
   echo "Resolved 'latest' to: ${VERSION}"
 fi
